@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Java Learning App 🎓
 
-## Getting Started
+インタラクティブなJava学習アプリケーション。50個のレッスンとゲーミフィケーション機能で楽しく学習できます。
 
-First, run the development server:
+## ✨ 特徴
+
+- **50個の段階的レッスン**: 基本から応用まで9つのレベルで構成
+- **インタラクティブなコードエディタ**: Monaco Editor（VS Codeと同じエディタ）を統合
+- **リアルタイムコード実行**: ブラウザ上でJavaコードを実行・検証
+- **ゲーミフィケーション**: 
+  - レベルシステム & 経験値
+  - 実績バッジ
+  - 連続学習日数トラッキング
+  - スター評価システム
+- **レスポンシブデザイン**: PC、タブレット、スマートフォン対応
+- **進捗保存**: ローカルストレージで学習進捗を自動保存
+
+## 🚀 クイックスタート
+
+### 必要な環境
+- Node.js 18.0以上
+- npm または yarn
+
+### インストール
 
 ```bash
+# リポジトリをクローン
+git clone https://github.com/YOUR_USERNAME/java-learning-app.git
+cd java-learning-app
+
+# 依存関係をインストール
+npm install
+
+# 開発サーバーを起動
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+アプリケーションは http://localhost:3000 で起動します。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📚 レッスン構成
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### レベル1: 基本の出力（レッスン1-5）
+- Hello World
+- 複数行の出力
+- print と println の違い
+- エスケープシーケンス
+- コメントの書き方
 
-## Learn More
+### レベル2: 変数の基本（レッスン6-15）
+- 変数の宣言と代入
+- 整数型（int）
+- 浮動小数点型（double）
+- 文字列型（String）
+- 真偽値型（boolean）
+- 文字型（char）
+- 定数（final）
+- 型変換
+- 変数の命名規則
+- 変数のスコープ
 
-To learn more about Next.js, take a look at the following resources:
+### レベル3: 演算子（レッスン16-20）
+- 算術演算子
+- 代入演算子
+- 比較演算子
+- 論理演算子
+- インクリメント・デクリメント
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### レベル4: 条件分岐（レッスン21-25）
+- if文
+- if-else文
+- else if文
+- switch文
+- 三項演算子
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### レベル5: ループ（レッスン26-30）
+- for文
+- while文
+- do-while文
+- break文
+- continue文
 
-## Deploy on Vercel
+### レベル6: 配列（レッスン31-35）
+- 配列の宣言と初期化
+- 配列の要素へのアクセス
+- 配列の長さ
+- 配列のループ処理
+- 多次元配列
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### レベル7: メソッド（レッスン36-40）
+- メソッドの基本
+- 引数と戻り値
+- メソッドのオーバーロード
+- 再帰メソッド
+- staticメソッド
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### レベル8: クラスとオブジェクト（レッスン41-45）
+- クラスの基本
+- コンストラクタ
+- インスタンス変数とメソッド
+- カプセル化
+- 継承の基礎
+
+### レベル9: 応用プロジェクト（レッスン46-50）
+- 数当てゲーム
+- 電卓プログラム
+- 学生管理システム
+- 図書館管理システム
+- 総合プロジェクト：在庫管理システム
+
+## 🛠 技術スタック
+
+- **フロントエンド**: Next.js 15, React 19, TypeScript
+- **スタイリング**: Tailwind CSS
+- **コードエディタ**: Monaco Editor
+- **アイコン**: Lucide React
+- **状態管理**: React Hooks & Local Storage
+
+## 📝 ライセンス
+
+MIT License
+
+## 🤝 貢献
+
+プルリクエストは歓迎です。大きな変更の場合は、まずissueを開いて変更内容について議論してください。
+
+## 📧 連絡先
+
+質問や提案がある場合は、GitHubのissueを作成してください。
+
+---
+
+Made with ❤️ for Java learners
