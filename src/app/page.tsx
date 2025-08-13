@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Play, Code2, Trophy, Target, BookOpen } from 'lucide-react'
+import { Play, Code2, Trophy, Target, BookOpen, Keyboard, Brain } from 'lucide-react'
 import { getUserProgress } from '@/services/progressService'
 import { UserProgress } from '@/types/lesson'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export default function HomePage() {
   const [progress, setProgress] = useState<UserProgress | null>(null)
@@ -16,6 +18,7 @@ export default function HomePage() {
   }, [])
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <Navigation />
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -35,17 +38,33 @@ export default function HomePage() {
             <br />
             ゲーミフィケーション機能で継続学習をサポート！
           </p>
-          <Link 
-            href="/learn"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
-          >
-            <Play className="w-5 h-5 mr-2" />
-            学習を始める
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/learn"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
+            >
+              <Play className="w-5 h-5 mr-2" />
+              学習を始める
+            </Link>
+            <Link 
+              href="/typing"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+            >
+              <Keyboard className="w-5 h-5 mr-2" />
+              タイピングゲーム
+            </Link>
+            <Link 
+              href="/challenge"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-pink-600 text-white font-semibold rounded-xl hover:from-red-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105"
+            >
+              <Brain className="w-5 h-5 mr-2" />
+              100問チャレンジ
+            </Link>
+          </div>
         </div>
 
         {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
           <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
               <BookOpen className="w-6 h-6 text-blue-600" />
@@ -73,6 +92,26 @@ export default function HomePage() {
             <h3 className="text-xl font-semibold text-gray-900 mb-3">ゲーミフィケーション</h3>
             <p className="text-gray-600">
               レベルアップ、バッジ、連続学習日数で楽しく継続学習
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+              <Keyboard className="w-6 h-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">タイピングゲーム</h3>
+            <p className="text-gray-600">
+              Javaコードを楽しくタイピング！コーディング速度とJava構文に慣れる
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+              <Brain className="w-6 h-6 text-red-600" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">100問チャレンジ</h3>
+            <p className="text-gray-600">
+              5段階の難易度で100問ずつのJava知識チャレンジ！総合力をテスト
             </p>
           </div>
         </div>
@@ -145,6 +184,7 @@ export default function HomePage() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

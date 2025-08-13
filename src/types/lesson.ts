@@ -15,6 +15,7 @@ export interface Lesson {
     hints: string[]
   }
   exercises: Exercise[]
+  quiz?: Quiz[]
 }
 
 export interface Exercise {
@@ -60,4 +61,12 @@ export interface Badge {
   icon: string
   earnedAt: string
   category: 'streak' | 'completion' | 'performance' | 'special'
+}
+
+export interface Quiz {
+  id: number
+  question: string
+  options: string[]
+  correctAnswer: number // 0-3のインデックス
+  explanation: string
 }

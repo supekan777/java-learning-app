@@ -1,4 +1,8 @@
 import { Lesson } from '@/types/lesson'
+import { simpleQuizData } from './simpleQuizData'
+
+// 軽量なクイズデータを使用
+const allQuizData = simpleQuizData
 
 export const lessons: Lesson[] = [
   // === レベル1: 基本の出力（レッスン1-5） ===
@@ -27,7 +31,8 @@ export const lessons: Lesson[] = [
       solution: `public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println("Hello World");\n    }\n}`,
       hints: ["System.out.println()を使用します", "文字列は\"で囲みます"],
       testCases: [{input: "", expectedOutput: "Hello World", description: "Hello Worldを正確に出力する"}]
-    }]
+    }],
+    quiz: allQuizData[1]
   },
   {
     id: 2,
@@ -54,7 +59,8 @@ export const lessons: Lesson[] = [
       solution: `public class SelfIntroduction {\n    public static void main(String[] args) {\n        System.out.println("こんにちは");\n        System.out.println("私の名前は太郎です");\n        System.out.println("よろしくお願いします");\n    }\n}`,
       hints: ["3つのprintln()を使用します"],
       testCases: [{input: "", expectedOutput: "こんにちは\n私の名前は太郎です\nよろしくお願いします", description: "3行の自己紹介を出力する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 3,
@@ -81,7 +87,8 @@ export const lessons: Lesson[] = [
       solution: `public class PrintExercise {\n    public static void main(String[] args) {\n        System.out.print("Java");\n        System.out.print("は");\n        System.out.println("楽しい");\n        System.out.println("プログラミング言語です");\n    }\n}`,
       hints: ["最初の3つはprint()を使用", "最後の2つはprintln()を使用"],
       testCases: [{input: "", expectedOutput: "Javaは楽しい\nプログラミング言語です", description: "printとprintlnを正しく使い分ける"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 4,
@@ -108,7 +115,8 @@ export const lessons: Lesson[] = [
       solution: `public class EscapeExercise {\n    public static void main(String[] args) {\n        System.out.println("Hello\\nWorld");\n        System.out.println("名前:\\t田中太郎");\n        System.out.println("\\"Java\\"は素晴らしい");\n    }\n}`,
       hints: ["\\nで改行を表現", "\\tでタブを表現", "\\\"でダブルクォートを表現"],
       testCases: [{input: "", expectedOutput: "Hello\nWorld\n名前:\t田中太郎\n\"Java\"は素晴らしい", description: "エスケープシーケンスを正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 5,
@@ -135,7 +143,8 @@ export const lessons: Lesson[] = [
       solution: `public class CommentExercise {\n    public static void main(String[] args) {\n        // 挨拶を出力\n        System.out.println("おはようございます");\n        \n        /* 今日の予定を出力 */\n        System.out.println("今日はJavaの勉強をします");\n    }\n}`,
       hints: ["コメントは実行されません", "適切な説明を追加しましょう"],
       testCases: [{input: "", expectedOutput: "おはようございます\n今日はJavaの勉強をします", description: "コメント付きで正しく出力する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル2: 変数の基本（レッスン6-15） ===
@@ -164,7 +173,8 @@ export const lessons: Lesson[] = [
       solution: `public class VariableExercise {\n    public static void main(String[] args) {\n        int age = 20;\n        String name = "太郎";\n        double height = 175.8;\n        \n        System.out.println("年齢: " + age);\n        System.out.println("名前: " + name);\n        System.out.println("身長: " + height);\n    }\n}`,
       hints: ["int age = 20; で整数型変数を宣言", "String name = \"太郎\"; で文字列型変数を宣言", "double height = 175.8; で浮動小数点型変数を宣言"],
       testCases: [{input: "", expectedOutput: "年齢: 20\n名前: 太郎\n身長: 175.8", description: "変数を正しく宣言し出力する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 7,
@@ -191,7 +201,8 @@ export const lessons: Lesson[] = [
       solution: `public class IntegerExercise {\n    public static void main(String[] args) {\n        int score = 85;\n        long population = 125000000L;\n        \n        System.out.println("スコア: " + score);\n        System.out.println("人口: " + population);\n    }\n}`,
       hints: ["int score = 85;", "long population = 125000000L;"],
       testCases: [{input: "", expectedOutput: "スコア: 85\n人口: 125000000", description: "整数型変数を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 8,
@@ -218,7 +229,8 @@ export const lessons: Lesson[] = [
       solution: `public class FloatExercise {\n    public static void main(String[] args) {\n        double temperature = 36.5;\n        float speed = 60.0f;\n        \n        System.out.println("体温: " + temperature + "度");\n        System.out.println("速度: " + speed + "km/h");\n    }\n}`,
       hints: ["double temperature = 36.5;", "float speed = 60.0f;"],
       testCases: [{input: "", expectedOutput: "体温: 36.5度\n速度: 60.0km/h", description: "浮動小数点型変数を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 9,
@@ -245,7 +257,8 @@ export const lessons: Lesson[] = [
       solution: `public class BooleanExercise {\n    public static void main(String[] args) {\n        boolean isStudent = true;\n        boolean isWorking = false;\n        \n        System.out.println("学生である: " + isStudent);\n        System.out.println("働いている: " + isWorking);\n    }\n}`,
       hints: ["boolean isStudent = true;", "boolean isWorking = false;"],
       testCases: [{input: "", expectedOutput: "学生である: true\n働いている: false", description: "boolean型変数を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 10,
@@ -272,7 +285,8 @@ export const lessons: Lesson[] = [
       solution: `public class CharExercise {\n    public static void main(String[] args) {\n        char bloodType = 'O';\n        char firstLetter = 'J';\n        \n        System.out.println("血液型: " + bloodType);\n        System.out.println("頭文字: " + firstLetter);\n    }\n}`,
       hints: ["char bloodType = 'O';", "char firstLetter = 'J';"],
       testCases: [{input: "", expectedOutput: "血液型: O\n頭文字: J", description: "char型変数を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン11-15: 変数の応用
@@ -301,7 +315,8 @@ export const lessons: Lesson[] = [
       solution: `public class ReassignmentExercise {\n    public static void main(String[] args) {\n        String message = "Hello";\n        System.out.println(message);\n        \n        message = "Goodbye";\n        System.out.println(message);\n    }\n}`,
       hints: ["String message = \"Hello\";", "message = \"Goodbye\";"],
       testCases: [{input: "", expectedOutput: "Hello\nGoodbye", description: "変数の再代入を正しく行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 12,
@@ -328,7 +343,8 @@ export const lessons: Lesson[] = [
       solution: `public class ConstantExercise {\n    public static void main(String[] args) {\n        final String SCHOOL_NAME = \"Java高校\";\n        final int CLASS_SIZE = 30;\n        \n        System.out.println(\"学校名: \" + SCHOOL_NAME);\n        System.out.println(\"クラス人数: \" + CLASS_SIZE);\n    }\n}`,
       hints: ["final String SCHOOL_NAME = \"Java高校\";", "final int CLASS_SIZE = 30;"],
       testCases: [{input: "", expectedOutput: "学校名: Java高校\nクラス人数: 30", description: "定数を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 13,
@@ -355,7 +371,8 @@ export const lessons: Lesson[] = [
       solution: `public class WeatherReport {\n    public static void main(String[] args) {\n        String city = \"東京\";\n        String weather = \"晴れ\";\n        int temperature = 25;\n        \n        String report = city + \"は\" + weather + \"、気温\" + temperature + \"度です\";\n        System.out.println(report);\n    }\n}`,
       hints: ["変数を+演算子で連結", "文字列リテラルも含める"],
       testCases: [{input: "", expectedOutput: "東京は晴れ、気温25度です", description: "文字列連結を正しく行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 14,
@@ -382,7 +399,8 @@ export const lessons: Lesson[] = [
       solution: `public class ScopeExercise {\n    public static void main(String[] args) {\n        String mainMessage = \"メインスコープ\";\n        System.out.println(mainMessage);\n        \n        {\n            String blockMessage = \"ブロックスコープ\";\n            System.out.println(blockMessage);\n        }\n        \n        System.out.println(mainMessage);\n    }\n}`,
       hints: ["{}でブロックを作成", "ブロック外の変数は使用可能"],
       testCases: [{input: "", expectedOutput: "メインスコープ\nブロックスコープ\nメインスコープ", description: "スコープを正しく理解する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 15,
@@ -409,7 +427,8 @@ export const lessons: Lesson[] = [
       solution: `public class NamingExercise {\n    public static void main(String[] args) {\n        String bookTitle = \"Javaプログラミング\";\n        int pageCount = 300;\n        boolean isAvailable = true;\n        \n        System.out.println(\"本のタイトル: \" + bookTitle);\n        System.out.println(\"ページ数: \" + pageCount);\n        System.out.println(\"利用可能: \" + isAvailable);\n    }\n}`,
       hints: ["camelCaseで命名", "意味が分かる名前を使用"],
       testCases: [{input: "", expectedOutput: "本のタイトル: Javaプログラミング\nページ数: 300\n利用可能: true", description: "適切な変数命名を行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル3: 演算子（レッスン16-20） ===
@@ -438,7 +457,8 @@ export const lessons: Lesson[] = [
       solution: `public class CalculationExercise {\n    public static void main(String[] args) {\n        int x = 15;\n        int y = 4;\n        \n        System.out.println("和: " + (x + y));\n        System.out.println("差: " + (x - y));\n        System.out.println("積: " + (x * y));\n        System.out.println("商: " + (x / y));\n        System.out.println("余り: " + (x % y));\n    }\n}`,
       hints: ["int x = 15; int y = 4;", "各演算子を使って計算"],
       testCases: [{input: "", expectedOutput: "和: 19\n差: 11\n積: 60\n商: 3\n余り: 3", description: "算術演算子を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 17,
@@ -465,7 +485,8 @@ export const lessons: Lesson[] = [
       solution: `public class GradeCheck {\n    public static void main(String[] args) {\n        int score = 85;\n        int passingGrade = 60;\n        \n        boolean isPassing = score >= passingGrade;\n        boolean isPerfect = score == 100;\n        boolean needsImprovement = score < 50;\n        \n        System.out.println("合格: " + isPassing);\n        System.out.println("満点: " + isPerfect);\n        System.out.println("要改善: " + needsImprovement);\n    }\n}`,
       hints: [">=で以上の比較", "==で等価の比較", "<で未満の比較"],
       testCases: [{input: "", expectedOutput: "合格: true\n満点: false\n要改善: false", description: "比較演算子を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 18,
@@ -492,7 +513,8 @@ export const lessons: Lesson[] = [
       solution: `public class DrivingCheck {\n    public static void main(String[] args) {\n        boolean hasLicense = true;\n        boolean hasKey = false;\n        int age = 22;\n        \n        boolean canDrive = hasLicense && hasKey && (age >= 18);\n        boolean needsLicense = !hasLicense && (age >= 18);\n        boolean hasAnyDocument = hasLicense || hasKey;\n        \n        System.out.println("運転可能: " + canDrive);\n        System.out.println("免許が必要: " + needsLicense);\n        System.out.println("何か書類がある: " + hasAnyDocument);\n    }\n}`,
       hints: ["&&で全条件をチェック", "!で否定条件", "||でいずれかの条件"],
       testCases: [{input: "", expectedOutput: "運転可能: false\n免許が必要: false\n何か書類がある: true", description: "論理演算子を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 19,
@@ -519,7 +541,8 @@ export const lessons: Lesson[] = [
       solution: `public class MoneyCalculation {\n    public static void main(String[] args) {\n        int money = 1000;\n        System.out.println("初期金額: " + money);\n        \n        money += 500;\n        System.out.println("500円追加: " + money);\n        \n        money -= 200;\n        System.out.println("200円使用: " + money);\n        \n        money *= 2;\n        System.out.println("2倍: " + money);\n    }\n}`,
       hints: ["money += 500; で500円追加", "money -= 200; で200円減額"],
       testCases: [{input: "", expectedOutput: "初期金額: 1000\n500円追加: 1500\n200円使用: 1300\n2倍: 2600", description: "代入演算子を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
   {
     id: 20,
@@ -546,7 +569,8 @@ export const lessons: Lesson[] = [
       solution: `public class LifeManagement {\n    public static void main(String[] args) {\n        int lives = 3;\n        System.out.println("残りライフ: " + lives);\n        \n        lives--;\n        System.out.println("1ライフ減少: " + lives);\n        \n        lives--;\n        System.out.println("さらに1ライフ減少: " + lives);\n        \n        lives++;\n        System.out.println("1ライフ回復: " + lives);\n    }\n}`,
       hints: ["lives--; で1減少", "lives++; で1増加"],
       testCases: [{input: "", expectedOutput: "残りライフ: 3\n1ライフ減少: 2\nさらに1ライフ減少: 1\n1ライフ回復: 2", description: "インクリメント・デクリメント演算子を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル4: 条件分岐（レッスン21-25） ===
@@ -575,7 +599,8 @@ export const lessons: Lesson[] = [
       solution: "public class WeatherCheck {\n    public static void main(String[] args) {\n        int temperature = 25;\n        \n        if (temperature >= 25) {\n            System.out.println(\"暖かい日です\");\n        }\n        \n        if (temperature < 10) {\n            System.out.println(\"寒い日です\");\n        }\n        \n        System.out.println(\"気温: \" + temperature + \"度\");\n    }\n}",
       hints: ["int temperature = 25;", "if (temperature >= 25)", "if (temperature < 10)"],
       testCases: [{input: "", expectedOutput: "暖かい日です\n気温: 25度", description: "if文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン22: if-else文
@@ -604,7 +629,8 @@ export const lessons: Lesson[] = [
       solution: "public class EvenOddCheck {\n    public static void main(String[] args) {\n        int number = 15;\n        \n        if (number % 2 == 0) {\n            System.out.println(number + \"は偶数です\");\n        } else {\n            System.out.println(number + \"は奇数です\");\n        }\n        \n        boolean isWeekend = false;\n        if (isWeekend) {\n            System.out.println(\"休日です\");\n        } else {\n            System.out.println(\"平日です\");\n        }\n    }\n}",
       hints: ["number % 2 == 0で偶数判定", "boolean変数をそのまま条件に使用"],
       testCases: [{input: "", expectedOutput: "15は奇数です\n平日です", description: "if-else文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン23: else if文
@@ -633,7 +659,8 @@ export const lessons: Lesson[] = [
       solution: "public class TemperatureCheck {\n    public static void main(String[] args) {\n        int temperature = 15;\n        \n        if (temperature >= 30) {\n            System.out.println(\"暑い\");\n        } else if (temperature >= 20) {\n            System.out.println(\"暖かい\");\n        } else if (temperature >= 10) {\n            System.out.println(\"涼しい\");\n        } else {\n            System.out.println(\"寒い\");\n        }\n        \n        System.out.println(\"気温: \" + temperature + \"度\");\n    }\n}",
       hints: ["int temperature = 15;", "条件は高い値から順番に", "else節で最終的なケース"],
       testCases: [{input: "", expectedOutput: "涼しい\n気温: 15度", description: "else if文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン24: ネストしたif文
@@ -662,7 +689,8 @@ export const lessons: Lesson[] = [
       solution: "public class GoOutCheck {\n    public static void main(String[] args) {\n        boolean isRaining = true;\n        boolean hasUmbrella = false;\n        \n        if (isRaining) {\n            if (hasUmbrella) {\n                System.out.println(\"外出できます\");\n            } else {\n                System.out.println(\"傘を持参してください\");\n            }\n        } else {\n            System.out.println(\"良い天気です\");\n        }\n        \n        int money = 1500;\n        if (money >= 1000) {\n            System.out.println(\"買い物に行けます\");\n            if (money >= 2000) {\n                System.out.println(\"贅沢な買い物もできます\");\n            }\n        }\n    }\n}",
       hints: ["雨の条件の中で傘のチェック", "お金の条件の中でさらに金額をチェック"],
       testCases: [{input: "", expectedOutput: "傘を持参してください\n買い物に行けます", description: "ネストしたif文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン25: switch文
@@ -691,7 +719,8 @@ export const lessons: Lesson[] = [
       solution: "public class SeasonCheck {\n    public static void main(String[] args) {\n        int month = 6;\n        \n        switch (month) {\n            case 12:\n            case 1:\n            case 2:\n                System.out.println(\"冬\");\n                break;\n            case 3:\n            case 4:\n            case 5:\n                System.out.println(\"春\");\n                break;\n            case 6:\n            case 7:\n            case 8:\n                System.out.println(\"夏\");\n                break;\n            case 9:\n            case 10:\n            case 11:\n                System.out.println(\"秋\");\n                break;\n            default:\n                System.out.println(\"無効な月\");\n                break;\n        }\n        \n        System.out.println(\"月: \" + month);\n    }\n}",
       hints: ["int month = 6;", "複数のcaseを連続して書ける", "break文を忘れずに"],
       testCases: [{input: "", expectedOutput: "夏\n月: 6", description: "switch文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル5: ループ（レッスン26-30） ===
@@ -721,7 +750,8 @@ export const lessons: Lesson[] = [
       solution: "public class ForExercise {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 3; i++) {\n            System.out.println(\"Hello World \" + i);\n        }\n        \n        for (int i = 10; i >= 1; i--) {\n            System.out.println(\"カウントダウン: \" + i);\n        }\n    }\n}",
       hints: ["for (int i = 1; i <= 3; i++)", "for (int i = 10; i >= 1; i--)"],
       testCases: [{input: "", expectedOutput: "Hello World 1\nHello World 2\nHello World 3\nカウントダウン: 10\nカウントダウン: 9\nカウントダウン: 8\nカウントダウン: 7\nカウントダウン: 6\nカウントダウン: 5\nカウントダウン: 4\nカウントダウン: 3\nカウントダウン: 2\nカウントダウン: 1", description: "for文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン27: while文
@@ -750,7 +780,8 @@ export const lessons: Lesson[] = [
       solution: "public class WhileExercise {\n    public static void main(String[] args) {\n        int i = 1;\n        while (i <= 5) {\n            System.out.println(\"数値: \" + i);\n            i++;\n        }\n        \n        int money = 1000;\n        int day = 1;\n        while (money > 0) {\n            money -= 100;\n            System.out.println(day + \"日目: 残り\" + money + \"円\");\n            day++;\n        }\n    }\n}",
       hints: ["int i = 1; while (i <= 5)", "money > 0の間ループ"],
       testCases: [{input: "", expectedOutput: "数値: 1\n数値: 2\n数値: 3\n数値: 4\n数値: 5\n1日目: 残り900円\n2日目: 残り800円\n3日目: 残り700円\n4日目: 残り600円\n5日目: 残り500円\n6日目: 残り400円\n7日目: 残り300円\n8日目: 残り200円\n9日目: 残り100円\n10日目: 残り0円", description: "while文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン28: do-while文
@@ -779,7 +810,8 @@ export const lessons: Lesson[] = [
       solution: "public class DoWhileExercise {\n    public static void main(String[] args) {\n        int number = 1;\n        do {\n            System.out.println(\"番号: \" + number);\n            number++;\n        } while (number <= 4);\n        \n        int value = 100;\n        do {\n            System.out.println(\"値: \" + value);\n            value -= 10;\n        } while (value > 50);\n    }\n}",
       hints: ["do { 処理 } while (条件);", "必ず1回は実行される"],
       testCases: [{input: "", expectedOutput: "番号: 1\n番号: 2\n番号: 3\n番号: 4\n値: 100\n値: 90\n値: 80\n値: 70\n値: 60", description: "do-while文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン29: break文とcontinue文
@@ -808,7 +840,8 @@ export const lessons: Lesson[] = [
       solution: "public class LoopControl {\n    public static void main(String[] args) {\n        // 7以上でbreak\n        for (int i = 1; i <= 10; i++) {\n            if (i >= 7) {\n                break;\n            }\n            System.out.println(\"数値: \" + i);\n        }\n        \n        System.out.println(\"---\");\n        \n        // 偶数をスキップ\n        for (int i = 1; i <= 8; i++) {\n            if (i % 2 == 0) {\n                continue;\n            }\n            System.out.println(\"奇数: \" + i);\n        }\n    }\n}",
       hints: ["if (i >= 7) { break; }", "if (i % 2 == 0) { continue; }"],
       testCases: [{input: "", expectedOutput: "数値: 1\n数値: 2\n数値: 3\n数値: 4\n数値: 5\n数値: 6\n---\n奇数: 1\n奇数: 3\n奇数: 5\n奇数: 7", description: "break文とcontinue文を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン30: ネストしたループ
@@ -837,7 +870,8 @@ export const lessons: Lesson[] = [
       solution: "public class PatternOutput {\n    public static void main(String[] args) {\n        // 数字のパターン\n        for (int i = 1; i <= 3; i++) {\n            for (int j = 1; j <= 4; j++) {\n                System.out.print(i + \"-\" + j + \" \");\n            }\n            System.out.println();\n        }\n        \n        System.out.println(\"---\");\n        \n        // 三角形パターン\n        for (int i = 1; i <= 4; i++) {\n            for (int j = 1; j <= i; j++) {\n                System.out.print(j + \" \");\n            }\n            System.out.println();\n        }\n    }\n}",
       hints: ["外側for (int i = 1; i <= 3; i++)", "内側for (int j = 1; j <= 4; j++)", "System.out.println()で各行を区切る"],
       testCases: [{input: "", expectedOutput: "1-1 1-2 1-3 1-4 \n2-1 2-2 2-3 2-4 \n3-1 3-2 3-3 3-4 \n---\n1 \n1 2 \n1 2 3 \n1 2 3 4 ", description: "ネストしたループを正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル6: 配列（レッスン31-35） ===
@@ -867,7 +901,8 @@ export const lessons: Lesson[] = [
       solution: "public class ArrayExercise {\n    public static void main(String[] args) {\n        int[] scores = {85, 90, 78};\n        System.out.println(\"1番目のスコア: \" + scores[0]);\n        System.out.println(\"2番目のスコア: \" + scores[1]);\n        System.out.println(\"3番目のスコア: \" + scores[2]);\n        \n        String[] fruits = {\"りんご\", \"バナナ\", \"オレンジ\"};\n        System.out.println(\"果物1: \" + fruits[0]);\n        System.out.println(\"果物2: \" + fruits[1]);\n        System.out.println(\"果物3: \" + fruits[2]);\n    }\n}",
       hints: ["int[] scores = {85, 90, 78};", "String[] fruits = {\"りんご\", \"バナナ\", \"オレンジ\"};"],
       testCases: [{input: "", expectedOutput: "1番目のスコア: 85\n2番目のスコア: 90\n3番目のスコア: 78\n果物1: りんご\n果物2: バナナ\n果物3: オレンジ", description: "配列の基本操作を正しく行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン32: 配列の繰り返し処理
@@ -896,7 +931,8 @@ export const lessons: Lesson[] = [
       solution: "public class ArrayStatistics {\n    public static void main(String[] args) {\n        int[] scores = {80, 95, 72, 88, 91};\n        \n        for (int i = 0; i < scores.length; i++) {\n            System.out.println(\"スコア\" + (i + 1) + \": \" + scores[i]);\n        }\n        \n        int total = 0;\n        for (int score : scores) {\n            total += score;\n        }\n        double average = (double) total / scores.length;\n        System.out.println(\"平均: \" + average);\n    }\n}",
       hints: ["for (int i = 0; i < scores.length; i++)", "合計を計算してから配列の長さで割る"],
       testCases: [{input: "", expectedOutput: "スコア1: 80\nスコア2: 95\nスコア3: 72\nスコア4: 88\nスコア5: 91\n平均: 85.2", description: "配列の繰り返し処理を正しく行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン33: 配列の検索
@@ -925,7 +961,8 @@ export const lessons: Lesson[] = [
       solution: "public class NameSearch {\n    public static void main(String[] args) {\n        String[] names = {\"太郎\", \"花子\", \"次郎\", \"美香\", \"健太\"};\n        String target = \"花子\";\n        \n        boolean found = false;\n        int position = -1;\n        \n        for (int i = 0; i < names.length; i++) {\n            if (names[i].equals(target)) {\n                found = true;\n                position = i + 1;\n                break;\n            }\n        }\n        \n        if (found) {\n            System.out.println(target + \"が見つかりました\");\n            System.out.println(\"位置: \" + position + \"番目\");\n        } else {\n            System.out.println(target + \"は見つかりませんでした\");\n        }\n    }\n}",
       hints: ["String[] names = {\"太郎\", \"花子\", \"次郎\", \"美香\", \"健太\"};", "names[i].equals(target)で文字列を比較"],
       testCases: [{input: "", expectedOutput: "花子が見つかりました\n位置: 2番目", description: "配列の検索を正しく行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン34: 多次元配列
@@ -954,7 +991,8 @@ export const lessons: Lesson[] = [
       solution: "public class TwoDimensionalArray {\n    public static void main(String[] args) {\n        int[][] table = {\n            {1, 2, 3},\n            {4, 5, 6}\n        };\n        \n        for (int i = 0; i < table.length; i++) {\n            for (int j = 0; j < table[i].length; j++) {\n                System.out.print(table[i][j] + \" \");\n            }\n            System.out.println();\n        }\n        \n        System.out.println(\"2行3列の要素: \" + table[1][2]);\n    }\n}",
       hints: ["int[][] table = {{1, 2, 3}, {4, 5, 6}};", "table[1][2]で2行3列にアクセス"],
       testCases: [{input: "", expectedOutput: "1 2 3 \n4 5 6 \n2行3列の要素: 6", description: "2次元配列を正しく操作する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン35: 配列の応用
@@ -983,7 +1021,8 @@ export const lessons: Lesson[] = [
       solution: "public class GradeStatistics {\n    public static void main(String[] args) {\n        int[] scores = {85, 92, 78, 95, 88};\n        \n        // 最大値と最小値\n        int max = scores[0];\n        int min = scores[0];\n        int sum = 0;\n        \n        for (int score : scores) {\n            if (score > max) max = score;\n            if (score < min) min = score;\n            sum += score;\n        }\n        \n        double average = (double) sum / scores.length;\n        \n        System.out.println(\"最高点: \" + max);\n        System.out.println(\"最低点: \" + min);\n        System.out.println(\"平均点: \" + average);\n        \n        // 平均以上の人数\n        int aboveAverage = 0;\n        for (int score : scores) {\n            if (score >= average) {\n                aboveAverage++;\n            }\n        }\n        System.out.println(\"平均以上: \" + aboveAverage + \"人\");\n    }\n}",
       hints: ["int[] scores = {85, 92, 78, 95, 88};", "最大値・最小値を追跡しながらループ", "平均と各スコアを比較してカウント"],
       testCases: [{input: "", expectedOutput: "最高点: 95\n最低点: 78\n平均点: 87.6\n平均以上: 3人", description: "配列の応用処理を正しく行う"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル7: メソッド（レッスン36-40） ===
@@ -1013,7 +1052,8 @@ export const lessons: Lesson[] = [
       solution: "public class MethodExercise {\n    public static void main(String[] args) {\n        showWelcome();\n        printName(\"田中太郎\");\n        displayScore(85);\n    }\n    \n    public static void showWelcome() {\n        System.out.println(\"Javaプログラムへようこそ！\");\n    }\n    \n    public static void printName(String name) {\n        System.out.println(\"名前: \" + name);\n    }\n    \n    public static void displayScore(int score) {\n        System.out.println(\"スコア: \" + score);\n    }\n}",
       hints: ["public static void methodName()", "引数のあるメソッドは括弧内に型と名前を記述"],
       testCases: [{input: "", expectedOutput: "Javaプログラムへようこそ！\n名前: 田中太郎\nスコア: 85", description: "メソッドの基本を正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン37: 戻り値を持つメソッド
@@ -1042,7 +1082,8 @@ export const lessons: Lesson[] = [
       solution: "public class CalculationMethods {\n    public static void main(String[] args) {\n        int result = multiply(6, 7);\n        System.out.println(\"掛け算の結果: \" + result);\n        \n        double average = calculateAverage(80, 90);\n        System.out.println(\"平均: \" + average);\n        \n        String message = getMessage();\n        System.out.println(message);\n    }\n    \n    public static int multiply(int a, int b) {\n        return a * b;\n    }\n    \n    public static double calculateAverage(int a, int b) {\n        return (double)(a + b) / 2;\n    }\n    \n    public static String getMessage() {\n        return \"Hello, World!\";\n    }\n}",
       hints: ["public static int multiply(int a, int b)", "return a * b;", "(double)でキャストして小数の計算"],
       testCases: [{input: "", expectedOutput: "掛け算の結果: 42\n平均: 85.0\nHello, World!", description: "戻り値を持つメソッドを正しく使用する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン38: メソッドの応用
@@ -1071,7 +1112,8 @@ export const lessons: Lesson[] = [
       solution: "public class ArrayMethods {\n    public static void main(String[] args) {\n        int[] numbers = {12, 45, 23, 67, 34};\n        \n        int sum = calculateSum(numbers);\n        System.out.println(\"合計: \" + sum);\n        \n        boolean hasEven = containsEven(numbers);\n        System.out.println(\"偶数を含む: \" + hasEven);\n        \n        int evenCount = countEven(numbers);\n        System.out.println(\"偶数の個数: \" + evenCount);\n    }\n    \n    public static int calculateSum(int[] array) {\n        int sum = 0;\n        for (int value : array) {\n            sum += value;\n        }\n        return sum;\n    }\n    \n    public static boolean containsEven(int[] array) {\n        for (int value : array) {\n            if (value % 2 == 0) {\n                return true;\n            }\n        }\n        return false;\n    }\n    \n    public static int countEven(int[] array) {\n        int count = 0;\n        for (int value : array) {\n            if (value % 2 == 0) {\n                count++;\n            }\n        }\n        return count;\n    }\n}",
       hints: ["int[] numbers = {12, 45, 23, 67, 34};", "value % 2 == 0で偶数判定", "forループで配列を処理"],
       testCases: [{input: "", expectedOutput: "合計: 181\n偶数を含む: true\n偶数の個数: 2", description: "メソッドの応用を正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン39: メソッドオーバーロード
@@ -1100,7 +1142,8 @@ export const lessons: Lesson[] = [
       solution: "public class OverloadExercise {\n    public static void main(String[] args) {\n        display(\"Hello\");\n        display(42);\n        display(\"値\", 100);\n    }\n    \n    public static void display(String message) {\n        System.out.println(\"文字列: \" + message);\n    }\n    \n    public static void display(int number) {\n        System.out.println(\"数値: \" + number);\n    }\n    \n    public static void display(String label, int value) {\n        System.out.println(label + \": \" + value);\n    }\n}",
       hints: ["public static void display(String message)", "public static void display(int number)", "public static void display(String label, int value)"],
       testCases: [{input: "", expectedOutput: "文字列: Hello\n数値: 42\n値: 100", description: "メソッドオーバーロードを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン40: 再帰メソッド
@@ -1129,7 +1172,8 @@ export const lessons: Lesson[] = [
       solution: "public class RecursiveExercise {\n    public static void main(String[] args) {\n        int result = sum(5);\n        System.out.println(\"1から5までの合計: \" + result);\n        \n        System.out.println(\"数を数える:\");\n        countUp(1, 3);\n    }\n    \n    public static int sum(int n) {\n        if (n <= 1) {\n            return 1;\n        }\n        return n + sum(n - 1);\n    }\n    \n    public static void countUp(int current, int max) {\n        if (current > max) {\n            return;\n        }\n        System.out.println(current);\n        countUp(current + 1, max);\n    }\n}",
       hints: ["if (n <= 1) return 1; で基底条件", "return n + sum(n - 1); で再帰", "current > maxで終了条件"],
       testCases: [{input: "", expectedOutput: "1から5までの合計: 15\n数を数える:\n1\n2\n3", description: "再帰メソッドを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル8: クラスとオブジェクト（レッスン41-45） ===
@@ -1159,7 +1203,8 @@ export const lessons: Lesson[] = [
       solution: "class Person {\n    private String name;\n    private int age;\n    \n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n    \n    public void introduce() {\n        System.out.println(\"こんにちは、\" + name + \"です。\" + age + \"歳です。\");\n    }\n    \n    public String getName() {\n        return name;\n    }\n    \n    public int getAge() {\n        return age;\n    }\n}\n\npublic class PersonClass {\n    public static void main(String[] args) {\n        Person person = new Person(\"田中太郎\", 25);\n        person.introduce();\n        System.out.println(\"名前: \" + person.getName());\n        System.out.println(\"年齢: \" + person.getAge());\n    }\n}",
       hints: ["class Person { private String name; private int age; }", "public Person(String name, int age) { this.name = name; this.age = age; }", "Person person = new Person(\"田中太郎\", 25);"],
       testCases: [{input: "", expectedOutput: "こんにちは、田中太郎です。25歳です。\n名前: 田中太郎\n年齢: 25", description: "クラスの基本を正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン42: カプセル化
@@ -1188,7 +1233,8 @@ export const lessons: Lesson[] = [
       solution: "class Car {\n    private String brand;\n    private int speed;\n    private boolean isRunning;\n    \n    public Car(String brand) {\n        this.brand = brand;\n        this.speed = 0;\n        this.isRunning = false;\n    }\n    \n    public void start() {\n        if (!isRunning) {\n            isRunning = true;\n            System.out.println(brand + \"を始動しました。\");\n        } else {\n            System.out.println(\"すでにエンジンが動いています。\");\n        }\n    }\n    \n    public void accelerate(int amount) {\n        if (isRunning && amount > 0) {\n            speed += amount;\n            System.out.println(\"加速しました。現在の速度: \" + speed + \"km/h\");\n        }\n    }\n    \n    public int getSpeed() {\n        return speed;\n    }\n    \n    public String getBrand() {\n        return brand;\n    }\n}\n\npublic class CarClass {\n    public static void main(String[] args) {\n        Car car = new Car(\"Toyota\");\n        car.start();\n        car.accelerate(30);\n        System.out.println(\"ブランド: \" + car.getBrand());\n        System.out.println(\"速度: \" + car.getSpeed() + \"km/h\");\n    }\n}",
       hints: ["Car car = new Car(\"Toyota\");", "car.start(); car.accelerate(30);", "private フィールドをpublic メソッドでアクセス"],
       testCases: [{input: "", expectedOutput: "Toyotaを始動しました。\n加速しました。現在の速度: 30km/h\nブランド: Toyota\n速度: 30km/h", description: "カプセル化を正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン43: コンストラクタ
@@ -1217,7 +1263,8 @@ export const lessons: Lesson[] = [
       solution: "class Rectangle {\n    private int width;\n    private int height;\n    \n    public Rectangle() {\n        this.width = 1;\n        this.height = 1;\n        System.out.println(\"デフォルト長方形を作成しました。\");\n    }\n    \n    public Rectangle(int side) {\n        this.width = side;\n        this.height = side;\n        System.out.println(\"正方形を作成しました。\");\n    }\n    \n    public Rectangle(int width, int height) {\n        this.width = width;\n        this.height = height;\n        System.out.println(\"長方形を作成しました。\");\n    }\n    \n    public int getArea() {\n        return width * height;\n    }\n    \n    public void showInfo() {\n        System.out.println(\"幅: \" + width + \", 高さ: \" + height + \", 面積: \" + getArea());\n    }\n}\n\npublic class RectangleClass {\n    public static void main(String[] args) {\n        Rectangle rect1 = new Rectangle();\n        Rectangle rect2 = new Rectangle(5);\n        Rectangle rect3 = new Rectangle(4, 6);\n        \n        rect1.showInfo();\n        rect2.showInfo();\n        rect3.showInfo();\n    }\n}",
       hints: ["public Rectangle() { this.width = 1; this.height = 1; }", "public Rectangle(int side) { this.width = side; this.height = side; }", "public Rectangle(int width, int height)"],
       testCases: [{input: "", expectedOutput: "デフォルト長方形を作成しました。\n正方形を作成しました。\n長方形を作成しました。\n幅: 1, 高さ: 1, 面積: 1\n幅: 5, 高さ: 5, 面積: 25\n幅: 4, 高さ: 6, 面積: 24", description: "コンストラクタを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン44: 静的メンバー
@@ -1246,7 +1293,8 @@ export const lessons: Lesson[] = [
       solution: "class Calculator {\n    public static final String VERSION = \"1.0\";\n    private static int operationCount = 0;\n    \n    public static int add(int a, int b) {\n        operationCount++;\n        return a + b;\n    }\n    \n    public static int multiply(int a, int b) {\n        operationCount++;\n        return a * b;\n    }\n    \n    public static int getOperationCount() {\n        return operationCount;\n    }\n    \n    public static void showVersion() {\n        System.out.println(\"Calculator Version: \" + VERSION);\n    }\n}\n\npublic class CalculatorClass {\n    public static void main(String[] args) {\n        Calculator.showVersion();\n        \n        int sum = Calculator.add(10, 5);\n        int product = Calculator.multiply(4, 3);\n        \n        System.out.println(\"加算結果: \" + sum);\n        System.out.println(\"乗算結果: \" + product);\n        System.out.println(\"実行された操作数: \" + Calculator.getOperationCount());\n    }\n}",
       hints: ["public static final String VERSION = \"1.0\";", "private static int operationCount = 0;", "Calculator.showVersion(); Calculator.add(10, 5);"],
       testCases: [{input: "", expectedOutput: "Calculator Version: 1.0\n加算結果: 15\n乗算結果: 12\n実行された操作数: 2", description: "静的メンバーを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン45: オブジェクトの応用
@@ -1275,7 +1323,8 @@ export const lessons: Lesson[] = [
       solution: "class Account {\n    private String accountNumber;\n    private String ownerName;\n    private double balance;\n    \n    public Account(String accountNumber, String ownerName, double initialBalance) {\n        this.accountNumber = accountNumber;\n        this.ownerName = ownerName;\n        this.balance = initialBalance;\n    }\n    \n    public void deposit(double amount) {\n        balance += amount;\n        System.out.println(ownerName + \"の口座に\" + amount + \"円入金しました。\");\n    }\n    \n    public boolean withdraw(double amount) {\n        if (amount <= balance) {\n            balance -= amount;\n            System.out.println(ownerName + \"の口座から\" + amount + \"円出金しました。\");\n            return true;\n        }\n        return false;\n    }\n    \n    public double getBalance() { return balance; }\n    public String getOwnerName() { return ownerName; }\n    public String getAccountNumber() { return accountNumber; }\n}\n\nclass Bank {\n    private Account[] accounts;\n    private int accountCount;\n    \n    public Bank() {\n        accounts = new Account[10];\n        accountCount = 0;\n    }\n    \n    public void addAccount(Account account) {\n        accounts[accountCount++] = account;\n        System.out.println(\"口座を開設しました: \" + account.getOwnerName());\n    }\n    \n    public double getTotalBalance() {\n        double total = 0;\n        for (int i = 0; i < accountCount; i++) {\n            total += accounts[i].getBalance();\n        }\n        return total;\n    }\n    \n    public void showAllAccounts() {\n        System.out.println(\"=== 全口座情報 ===\");\n        for (int i = 0; i < accountCount; i++) {\n            Account acc = accounts[i];\n            System.out.println(acc.getOwnerName() + \": \" + acc.getBalance() + \"円\");\n        }\n        System.out.println(\"銀行総預金額: \" + getTotalBalance() + \"円\");\n    }\n}\n\npublic class BankSystem {\n    public static void main(String[] args) {\n        Bank bank = new Bank();\n        \n        Account acc1 = new Account(\"001\", \"田中太郎\", 10000);\n        Account acc2 = new Account(\"002\", \"佐藤花子\", 5000);\n        \n        bank.addAccount(acc1);\n        bank.addAccount(acc2);\n        \n        acc1.deposit(3000);\n        acc2.withdraw(2000);\n        \n        bank.showAllAccounts();\n    }\n}",
       hints: ["Account acc1 = new Account(\"001\", \"田中太郎\", 10000);", "bank.addAccount(acc1);", "acc1.deposit(3000); acc2.withdraw(2000);"],
       testCases: [{input: "", expectedOutput: "口座を開設しました: 田中太郎\n口座を開設しました: 佐藤花子\n田中太郎の口座に3000.0円入金しました。\n佐藤花子の口座から2000.0円出金しました。\n=== 全口座情報 ===\n田中太郎: 13000.0円\n佐藤花子: 3000.0円\n銀行総預金額: 16000.0円", description: "オブジェクトの応用を正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // === レベル9: 実践プロジェクト（レッスン46-50） ===
@@ -1305,7 +1354,8 @@ export const lessons: Lesson[] = [
       solution: "class NumberGuessingGame {\n    private int targetNumber;\n    private int attempts;\n    \n    public NumberGuessingGame() {\n        targetNumber = 42; // 固定値でテスト\n        attempts = 0;\n    }\n    \n    public void guess(int number) {\n        attempts++;\n        System.out.println(\"予想 \" + attempts + \": \" + number);\n        \n        if (number == targetNumber) {\n            System.out.println(\"正解！ \" + attempts + \"回で当てました！\");\n        } else if (number < targetNumber) {\n            System.out.println(\"もっと大きいです\");\n        } else {\n            System.out.println(\"もっと小さいです\");\n        }\n    }\n    \n    public boolean isCorrect(int number) {\n        return number == targetNumber;\n    }\n    \n    public void showGame() {\n        System.out.println(\"=== 数当てゲーム ===\");\n        System.out.println(\"1から100の数を当てよう！\");\n    }\n}\n\npublic class GuessGame {\n    public static void main(String[] args) {\n        NumberGuessingGame game = new NumberGuessingGame();\n        game.showGame();\n        \n        game.guess(30);\n        game.guess(50);\n        game.guess(40);\n        game.guess(42);\n    }\n}",
       hints: ["private int targetNumber = 42;", "game.guess(30); で予想", "条件分岐で大小判定"],
       testCases: [{input: "", expectedOutput: "=== 数当てゲーム ===\n1から100の数を当てよう！\n予想 1: 30\nもっと大きいです\n予想 2: 50\nもっと小さいです\n予想 3: 40\nもっと大きいです\n予想 4: 42\n正解！ 4回で当てました！", description: "数当てゲームを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン47: 電卓プログラム
@@ -1334,7 +1384,8 @@ export const lessons: Lesson[] = [
       solution: "class Calculator {\n    private String[] operations;\n    private int operationCount;\n    \n    public Calculator() {\n        operations = new String[5];\n        operationCount = 0;\n    }\n    \n    public double add(double a, double b) {\n        double result = a + b;\n        addOperation(\"加算: \" + a + \" + \" + b + \" = \" + result);\n        return result;\n    }\n    \n    public double subtract(double a, double b) {\n        double result = a - b;\n        addOperation(\"減算: \" + a + \" - \" + b + \" = \" + result);\n        return result;\n    }\n    \n    public double multiply(double a, double b) {\n        double result = a * b;\n        addOperation(\"乗算: \" + a + \" * \" + b + \" = \" + result);\n        return result;\n    }\n    \n    public double divide(double a, double b) {\n        if (b == 0) {\n            System.out.println(\"エラー: ゼロ除算\");\n            return 0;\n        }\n        double result = a / b;\n        addOperation(\"除算: \" + a + \" / \" + b + \" = \" + result);\n        return result;\n    }\n    \n    private void addOperation(String op) {\n        if (operationCount < operations.length) {\n            operations[operationCount++] = op;\n        }\n    }\n    \n    public void showOperations() {\n        System.out.println(\"=== 計算履歴 ===\");\n        for (int i = 0; i < operationCount; i++) {\n            System.out.println(operations[i]);\n        }\n    }\n}\n\npublic class SimpleCalculator {\n    public static void main(String[] args) {\n        Calculator calc = new Calculator();\n        System.out.println(\"=== 電卓プログラム ===\");\n        \n        calc.add(10, 5);\n        calc.subtract(20, 3);\n        calc.multiply(4, 6);\n        calc.divide(15, 3);\n        calc.divide(10, 0);\n        \n        calc.showOperations();\n    }\n}",
       hints: ["public double add(double a, double b)", "if (b == 0) でゼロ除算チェック", "String[] operations で履歴保存"],
       testCases: [{input: "", expectedOutput: "=== 電卓プログラム ===\nエラー: ゼロ除算\n=== 計算履歴 ===\n加算: 10.0 + 5.0 = 15.0\n減算: 20.0 - 3.0 = 17.0\n乗算: 4.0 * 6.0 = 24.0\n除算: 15.0 / 3.0 = 5.0", description: "電卓プログラムを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン48: 学生管理システム
@@ -1363,7 +1414,8 @@ export const lessons: Lesson[] = [
       solution: "class Student {\n    private String name;\n    private int id;\n    private double average;\n    \n    public Student(String name, int id, double average) {\n        this.name = name;\n        this.id = id;\n        this.average = average;\n    }\n    \n    public String getName() { return name; }\n    public int getId() { return id; }\n    public double getAverage() { return average; }\n    \n    public boolean isPassing() {\n        return average >= 60;\n    }\n    \n    public void showInfo() {\n        System.out.println(\"学生: \" + name + \", 平均: \" + average + \", 合格: \" + (isPassing() ? \"はい\" : \"いいえ\"));\n    }\n}\n\nclass StudentManager {\n    private Student[] students;\n    private int count;\n    \n    public StudentManager() {\n        students = new Student[10];\n        count = 0;\n    }\n    \n    public void addStudent(Student student) {\n        students[count++] = student;\n        System.out.println(\"学生を追加: \" + student.getName());\n    }\n    \n    public void showAllStudents() {\n        System.out.println(\"=== 学生一覧 ===\");\n        for (int i = 0; i < count; i++) {\n            students[i].showInfo();\n        }\n    }\n    \n    public double getClassAverage() {\n        double sum = 0;\n        for (int i = 0; i < count; i++) {\n            sum += students[i].getAverage();\n        }\n        return sum / count;\n    }\n}\n\npublic class SchoolSystem {\n    public static void main(String[] args) {\n        StudentManager manager = new StudentManager();\n        \n        Student s1 = new Student(\"田中太郎\", 1, 85.0);\n        Student s2 = new Student(\"佐藤花子\", 2, 92.0);\n        \n        manager.addStudent(s1);\n        manager.addStudent(s2);\n        \n        manager.showAllStudents();\n        System.out.println(\"クラス平均: \" + manager.getClassAverage());\n    }\n}",
       hints: ["Student s1 = new Student(\"田中太郎\", 1, 85.0);", "manager.addStudent(s1);", "average >= 60 で合格判定"],
       testCases: [{input: "", expectedOutput: "学生を追加: 田中太郎\n学生を追加: 佐藤花子\n=== 学生一覧 ===\n学生: 田中太郎, 平均: 85.0, 合格: はい\n学生: 佐藤花子, 平均: 92.0, 合格: はい\nクラス平均: 88.5", description: "学生管理システムを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン49: 図書館管理システム
@@ -1392,7 +1444,8 @@ export const lessons: Lesson[] = [
       solution: "class Book {\n    private String title;\n    private String author;\n    private boolean isAvailable;\n    \n    public Book(String title, String author) {\n        this.title = title;\n        this.author = author;\n        this.isAvailable = true;\n    }\n    \n    public String getTitle() { return title; }\n    public String getAuthor() { return author; }\n    public boolean isAvailable() { return isAvailable; }\n    \n    public boolean borrow() {\n        if (isAvailable) {\n            isAvailable = false;\n            return true;\n        }\n        return false;\n    }\n    \n    public void returnBook() {\n        isAvailable = true;\n    }\n}\n\nclass Library {\n    private Book[] books;\n    private int count;\n    \n    public Library() {\n        books = new Book[5];\n        count = 0;\n    }\n    \n    public void addBook(Book book) {\n        books[count++] = book;\n        System.out.println(\"本を追加: \" + book.getTitle());\n    }\n    \n    public void borrowBook(String title) {\n        for (int i = 0; i < count; i++) {\n            if (books[i].getTitle().equals(title)) {\n                if (books[i].borrow()) {\n                    System.out.println(\"借りました: \" + title);\n                } else {\n                    System.out.println(\"貸出中: \" + title);\n                }\n                return;\n            }\n        }\n    }\n    \n    public void returnBook(String title) {\n        for (int i = 0; i < count; i++) {\n            if (books[i].getTitle().equals(title)) {\n                books[i].returnBook();\n                System.out.println(\"返却しました: \" + title);\n                return;\n            }\n        }\n    }\n    \n    public void showBooks() {\n        System.out.println(\"=== 図書一覧 ===\");\n        for (int i = 0; i < count; i++) {\n            System.out.println(books[i].getTitle() + \" - \" + (books[i].isAvailable() ? \"利用可能\" : \"貸出中\"));\n        }\n    }\n}\n\npublic class BookManagement {\n    public static void main(String[] args) {\n        Library library = new Library();\n        \n        library.addBook(new Book(\"Java入門\", \"田中太郎\"));\n        library.addBook(new Book(\"Python基礎\", \"佐藤花子\"));\n        \n        library.borrowBook(\"Java入門\");\n        library.borrowBook(\"Java入門\");\n        library.returnBook(\"Java入門\");\n        \n        library.showBooks();\n    }\n}",
       hints: ["library.addBook(new Book(\"Java入門\", \"田中太郎\"));", "library.borrowBook(\"Java入門\"); を2回", "library.returnBook(\"Java入門\");"],
       testCases: [{input: "", expectedOutput: "本を追加: Java入門\n本を追加: Python基礎\n借りました: Java入門\n貸出中: Java入門\n返却しました: Java入門\n=== 図書一覧 ===\nJava入門 - 利用可能\nPython基礎 - 利用可能", description: "図書館管理システムを正しく実装する"}]
-    }]
+    }],
+    quiz: allQuizData[2]
   },
 
   // レッスン50: 総合プロジェクト

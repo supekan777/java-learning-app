@@ -6,6 +6,8 @@ import { ArrowLeft, Play, Lock, CheckCircle, Star, Trophy, Target, Zap, Calendar
 import { lessons } from '@/data/lessons'
 import { getUserProgress, isLessonUnlocked, getExpToNextLevel } from '@/services/progressService'
 import { UserProgress } from '@/types/lesson'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export default function LearnPage() {
   const [progress, setProgress] = useState<UserProgress | null>(null)
@@ -18,11 +20,15 @@ export default function LearnPage() {
 
   if (!mounted || !progress) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">読み込み中...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <Navigation />
+        <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">読み込み中...</p>
+          </div>
         </div>
+        <Footer />
       </div>
     )
   }
@@ -42,6 +48,7 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <Navigation />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -314,6 +321,7 @@ export default function LearnPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   )
 }

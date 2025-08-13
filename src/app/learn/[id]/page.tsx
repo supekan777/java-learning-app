@@ -3,11 +3,14 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ArrowLeft, Play, RotateCcw, Lightbulb, CheckCircle, AlertCircle } from 'lucide-react'
+import { ArrowLeft, Play, RotateCcw, Lightbulb, CheckCircle, AlertCircle, Code2, HelpCircle } from 'lucide-react'
 import { lessons } from '@/data/lessons'
 import { executeJavaCode, validateTestCases } from '@/services/codeExecution'
 import { completeLesson, getUserProgress } from '@/services/progressService'
 import type { Lesson } from '@/types/lesson'
+import QuizComponent from '@/components/Quiz'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 // Monaco Editorを動的インポート（クライアントサイドのみ）
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), {
@@ -34,6 +37,7 @@ export default function LessonPage({ params }: PageProps) {
   const [currentHintIndex, setCurrentHintIndex] = useState(0)
   const [isSuccess, setIsSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState<'lesson' | 'quiz'>('lesson')
 
   // パラメータの解決とレッスンデータの設定
   useEffect(() => {
@@ -43,6 +47,7 @@ export default function LessonPage({ params }: PageProps) {
       if (isMounted) {
         const id = parseInt(resolvedParams.id)
         const foundLesson = lessons.find(l => l.id === id)
+        
         
         setLessonId(id)
         setLesson(foundLesson || null)
@@ -139,11 +144,15 @@ export default function LessonPage({ params }: PageProps) {
   // ローディング状態
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">読み込み中...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <Navigation />
+        <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">読み込み中...</p>
+          </div>
         </div>
+        <Footer />
       </div>
     )
   }
@@ -151,14 +160,18 @@ export default function LessonPage({ params }: PageProps) {
   // レッスンが見つからない場合
   if (!lesson) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">レッスンが見つかりません</h1>
-          <p className="text-gray-600 mb-4">レッスンID: {lessonId}</p>
-          <Link href="/learn" className="text-blue-600 hover:underline">
-            学習ページに戻る
-          </Link>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <Navigation />
+        <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">レッスンが見つかりません</h1>
+            <p className="text-gray-600 mb-4">レッスンID: {lessonId}</p>
+            <Link href="/learn" className="text-blue-600 hover:underline">
+              学習ページに戻る
+            </Link>
+          </div>
         </div>
+        <Footer />
       </div>
     )
   }
@@ -166,6 +179,7 @@ export default function LessonPage({ params }: PageProps) {
   // メインレンダリング
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <Navigation />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center mb-8">
@@ -182,9 +196,37 @@ export default function LessonPage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Left Column - Content */}
-          <div className="space-y-6">
+        {/* Tab Navigation */}
+        <div className="flex space-x-2 mb-6">
+          <button
+            onClick={() => setActiveTab('lesson')}
+            className={`inline-flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+              activeTab === 'lesson'
+                ? 'bg-white text-blue-600 shadow-lg'
+                : 'bg-white/50 text-gray-600 hover:bg-white/70'
+            }`}
+          >
+            <Code2 className="w-5 h-5 mr-2" />
+            レッスン
+          </button>
+          <button
+            onClick={() => setActiveTab('quiz')}
+            className={`inline-flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+              activeTab === 'quiz'
+                ? 'bg-white text-purple-600 shadow-lg'
+                : 'bg-white/50 text-gray-600 hover:bg-white/70'
+            }`}
+          >
+            <HelpCircle className="w-5 h-5 mr-2" />
+            クイズ ({lesson.quiz?.length || 0}問)
+          </button>
+        </div>
+
+        {/* Tab Content */}
+        {activeTab === 'lesson' ? (
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Left Column - Content */}
+            <div className="space-y-6">
             {/* Lesson Content */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">レッスン内容</h2>
@@ -204,18 +246,6 @@ export default function LessonPage({ params }: PageProps) {
                 </pre>
               </div>
             </div>
-
-            {/* Exercise Description */}
-            {lesson.exercises && lesson.exercises[0] && (
-              <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">
-                  練習問題: {lesson.exercises[0].title}
-                </h3>
-                <p className="text-blue-700 leading-relaxed">
-                  {lesson.exercises[0].description}
-                </p>
-              </div>
-            )}
 
             {/* Hints */}
             {showHints && (
@@ -241,6 +271,18 @@ export default function LessonPage({ params }: PageProps) {
 
           {/* Right Column - Code Editor */}
           <div className="space-y-6">
+            {/* Exercise Description */}
+            {lesson.exercises && lesson.exercises[0] && (
+              <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+                <h3 className="text-lg font-semibold text-blue-800 mb-4">
+                  練習問題: {lesson.exercises[0].title}
+                </h3>
+                <p className="text-blue-700 leading-relaxed">
+                  {lesson.exercises[0].description}
+                </p>
+              </div>
+            )}
+
             {/* Code Editor */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="flex items-center justify-between mb-4">
@@ -329,7 +371,33 @@ export default function LessonPage({ params }: PageProps) {
             </div>
           </div>
         </div>
+        ) : (
+          /* Quiz Tab Content */
+          <div className="max-w-4xl mx-auto">
+            {lesson.quiz && lesson.quiz.length > 0 ? (
+              <QuizComponent 
+                quizzes={lesson.quiz}
+                onComplete={(score) => {
+                  console.log('Quiz completed with score:', score)
+                  // ここでクイズの結果を保存する処理を追加できます
+                }}
+              />
+            ) : (
+              <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
+                <HelpCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  クイズはまだ準備中です
+                </h3>
+                <p className="text-gray-600">
+                  このレッスンのクイズは現在作成中です。<br />
+                  まずはレッスンタブでコーディングの練習をしてください。
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
+      <Footer />
     </div>
   )
 }
