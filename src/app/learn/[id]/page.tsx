@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { ArrowLeft, Play, RotateCcw, Lightbulb, CheckCircle, AlertCircle, Code2, HelpCircle } from 'lucide-react'
-import { lessons } from '@/data/lessons'
+import { loadLessons } from '@/utils/dataLoader'
 import { executeJavaCode, validateTestCases } from '@/services/codeExecution'
 import { completeLesson, getUserProgress } from '@/services/progressService'
 import type { Lesson } from '@/types/lesson'
@@ -43,7 +43,10 @@ export default function LessonPage({ params }: PageProps) {
   useEffect(() => {
     let isMounted = true
     
-    params.then((resolvedParams) => {
+    const loadData = async () => {
+      const resolvedParams = await params
+      const lessons = await loadLessons()
+      
       if (isMounted) {
         const id = parseInt(resolvedParams.id)
         const foundLesson = lessons.find(l => l.id === id)
@@ -57,7 +60,9 @@ export default function LessonPage({ params }: PageProps) {
           setCode(foundLesson.content.initialCode)
         }
       }
-    }).catch(() => {
+    }
+    
+    loadData().catch(() => {
       if (isMounted) {
         setIsLoading(false)
       }

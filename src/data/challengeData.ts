@@ -50,6 +50,146 @@ export const challengeLevels: ChallengeLevel[] = [
         options: ["class", "public", "variable", "static"],
         correctAnswer: 2,
         explanation: "variableはJavaの予約語ではありません。変数を宣言する際のキーワードではありません。"
+      },
+      {
+        id: 6,
+        question: "Javaプログラムをコンパイルするコマンドは？",
+        options: ["javac", "java", "compile", "build"],
+        correctAnswer: 0,
+        explanation: "javacコマンドを使ってJavaソースファイル(.java)をバイトコード(.class)にコンパイルします。"
+      },
+      {
+        id: 7,
+        question: "Javaプログラムを実行するコマンドは？",
+        options: ["javac", "java", "run", "execute"],
+        correctAnswer: 1,
+        explanation: "javaコマンドを使ってコンパイル済みのJavaプログラム(.class)を実行します。"
+      },
+      {
+        id: 8,
+        question: "Javaの文字列リテラルを囲む記号は？",
+        options: ["'（シングルクォート）", "\"（ダブルクォート）", "`（バッククォート）", "|（パイプ）"],
+        correctAnswer: 1,
+        explanation: "Javaでは文字列リテラルをダブルクォート(\")で囲みます。シングルクォートは文字リテラル用です。"
+      },
+      {
+        id: 9,
+        question: "Javaの文字リテラルを囲む記号は？",
+        options: ["'（シングルクォート）", "\"（ダブルクォート）", "`（バッククォート）", "/（スラッシュ）"],
+        correctAnswer: 0,
+        explanation: "Javaでは文字リテラルをシングルクォート(')で囲みます。例：'A', '5'"
+      },
+      {
+        id: 10,
+        question: "Javaの複数行コメントの正しい書き方は？",
+        options: ["<!-- コメント -->", "/* コメント */", "// コメント //", "## コメント ##"],
+        correctAnswer: 1,
+        explanation: "Javaでは/*と*/で囲むことで複数行コメントを書くことができます。"
+      },
+      {
+        id: 11,
+        question: "Javaのパッケージ宣言はファイルのどこに書きますか？",
+        options: ["ファイルの最後", "ファイルの先頭", "クラス宣言の後", "main メソッドの中"],
+        correctAnswer: 1,
+        explanation: "package文はJavaファイルの最初（コメントを除く）に記述する必要があります。"
+      },
+      {
+        id: 12,
+        question: "Javaクラスのファイル名とクラス名の関係は？",
+        options: ["関係ない", "ファイル名がクラス名より長い", "同じでなければならない", "クラス名がファイル名より長い"],
+        correctAnswer: 2,
+        explanation: "Javaではpublicクラスのクラス名とファイル名（拡張子を除く）は同じでなければなりません。"
+      },
+      {
+        id: 13,
+        question: "Javaプログラムの実行開始時に呼び出されるメソッドのシグネチャは？",
+        options: ["public static void main(String args)", "public static void main(String[] args)", "static void main(String[] args)", "public void main(String[] args)"],
+        correctAnswer: 1,
+        explanation: "mainメソッドは\"public static void main(String[] args)\"として定義する必要があります。"
+      },
+      {
+        id: 14,
+        question: "Javaで大文字小文字を区別することを何と言いますか？",
+        options: ["case-sensitive", "case-insensitive", "case-dependent", "case-free"],
+        correctAnswer: 0,
+        explanation: "Javaは大文字小文字を区別する言語で、これをcase-sensitiveと言います。"
+      },
+      {
+        id: 15,
+        question: "Javaの文の終わりを示す記号は？",
+        options: [".", ",", ";", ":"],
+        correctAnswer: 2,
+        explanation: "Javaでは文の終わりにセミコロン(;)を付けます。"
+      },
+      {
+        id: 16,
+        question: "Javaでクラスを定義するキーワードは？",
+        options: ["class", "define", "struct", "object"],
+        correctAnswer: 0,
+        explanation: "Javaではclassキーワードを使ってクラスを定義します。"
+      },
+      {
+        id: 17,
+        question: "Javaでアクセス修飾子でないものは？",
+        options: ["public", "private", "protected", "internal"],
+        correctAnswer: 3,
+        explanation: "internalはJavaのアクセス修飾子ではありません。Javaには public, private, protected があります。"
+      },
+      {
+        id: 18,
+        question: "Javaで変数に値を代入する演算子は？",
+        options: ["==", "=", "!=", "+="],
+        correctAnswer: 1,
+        explanation: "Javaでは=演算子を使って変数に値を代入します。==は比較演算子です。"
+      },
+      {
+        id: 19,
+        question: "System.out.println()とSystem.out.print()の違いは？",
+        options: ["機能的な違いはない", "println()は改行する", "print()は改行する", "println()は高速"],
+        correctAnswer: 1,
+        explanation: "println()は出力後に改行しますが、print()は改行しません。"
+      },
+      {
+        id: 20,
+        question: "Javaでimport文を書く場所は？",
+        options: ["ファイルの最後", "package文の前", "package文の後、class宣言の前", "main メソッドの中"],
+        correctAnswer: 2,
+        explanation: "import文はpackage文の後、class宣言の前に記述します。"
+      },
+      {
+        id: 21,
+        question: "Javaコンパイラが作成するファイルの拡張子は？",
+        options: [".java", ".class", ".jar", ".exe"],
+        correctAnswer: 1,
+        explanation: "Javaコンパイラ(javac)は.javaファイルを.classファイル（バイトコード）に変換します。"
+      },
+      {
+        id: 22,
+        question: "Javaの実行環境を何と呼びますか？",
+        options: ["JDK", "JVM", "JRE", "IDE"],
+        correctAnswer: 2,
+        explanation: "JRE（Java Runtime Environment）はJavaプログラムの実行環境です。"
+      },
+      {
+        id: 23,
+        question: "Javaの開発環境を何と呼びますか？",
+        options: ["JDK", "JVM", "JRE", "API"],
+        correctAnswer: 0,
+        explanation: "JDK（Java Development Kit）はJavaの開発環境で、コンパイラやデバッガなどの開発ツールが含まれます。"
+      },
+      {
+        id: 24,
+        question: "Javaのバイトコードを実行する仮想マシンを何と呼びますか？",
+        options: ["JDK", "JVM", "JRE", "JIT"],
+        correctAnswer: 1,
+        explanation: "JVM（Java Virtual Machine）はJavaバイトコードを実行する仮想マシンです。"
+      },
+      {
+        id: 25,
+        question: "Javaで数値リテラルの末尾にLを付ける理由は？",
+        options: ["小数点を表す", "long型を表す", "文字列を表す", "負の数を表す"],
+        correctAnswer: 1,
+        explanation: "数値リテラルの末尾にLまたはlを付けることで、その値がlong型であることを明示します。"
       }
     ]
   },

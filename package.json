@@ -4,11 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:fast": "next dev --turbo",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
     "@monaco-editor/react": "^4.7.0",
     "axios": "^1.11.0",
     "framer-motion": "^12.23.12",
