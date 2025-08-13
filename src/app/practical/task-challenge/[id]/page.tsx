@@ -6,7 +6,7 @@ import { ArrowLeft, Briefcase, Clock, User, Target, CheckCircle, Lightbulb, Code
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PuzzleCodeEditor from '@/components/PuzzleCodeEditor'
-import { practicalChallenges, PracticalChallenge, Phase } from '@/data/practicalChallenges'
+import { practicalChallenges, PracticalChallenge, loadChallengeDetails } from '@/data/practicalChallengesOptimized'
 
 interface Props {
   params: Promise<{
@@ -28,12 +28,24 @@ export default function TaskChallengeDetailPage({ params }: Props) {
   const [generatedCode, setGeneratedCode] = useState<Array<{type: 'code' | 'todo', content: string, todoNumber?: number}>>([])
 
   useEffect(() => {
-    const id = parseInt(resolvedParams.id)
-    const foundChallenge = practicalChallenges.find(c => c.id === id)
-    if (foundChallenge) {
-      setChallenge(foundChallenge)
-      setUserCode(foundChallenge.starterCode)
+    const loadChallenge = async () => {
+      const id = parseInt(resolvedParams.id)
+      try {
+        const detailedChallenge = await loadChallengeDetails(id)
+        if (detailedChallenge) {
+          setChallenge(detailedChallenge)
+          setUserCode(detailedChallenge.starterCode)
+        }
+      } catch (error) {
+        // フォールバック: 基本データを使用
+        const basicChallenge = practicalChallenges.find(c => c.id === id)
+        if (basicChallenge) {
+          setChallenge(basicChallenge)
+          setUserCode(basicChallenge.starterCode)
+        }
+      }
     }
+    loadChallenge()
   }, [resolvedParams])
 
   if (!challenge) {

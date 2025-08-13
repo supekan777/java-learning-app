@@ -6404,5 +6404,793 @@ public class InventoryManagementSystem {
         System.out.println("サンプルデータの初期化が完了しました");
     }
 }`
+  },
+  {
+    id: 7,
+    title: "図書館管理システム",
+    client: "市立図書館",
+    deadline: "2週間以内",
+    difficulty: 'beginner',
+    estimatedTime: "3-4時間",
+    description: "市立図書館では、図書の貸出・返却管理をデジタル化したいと考えています。現在は紙ベースで管理していますが、効率化のためにシステム化が必要です。基本的な図書管理機能を持つアプリケーションを作成してください。",
+    requirements: [
+      "図書の登録・検索・表示機能",
+      "利用者の登録・管理機能", 
+      "図書の貸出・返却処理",
+      "貸出状況の確認機能",
+      "簡単な統計情報の表示"
+    ],
+    constraints: [
+      "Java言語で実装すること",
+      "コンソールベースのアプリケーションとする",
+      "図書は最大100冊まで管理可能とする",
+      "利用者は最大50人まで登録可能とする",
+      "1人あたりの貸出上限は3冊とする"
+    ],
+    learningPoints: [
+      "クラス設計とオブジェクト指向プログラミング",
+      "ArrayListを使ったデータ管理",
+      "メソッドの分割と責任の分離",
+      "条件分岐とループの活用",
+      "例外処理の実装"
+    ],
+    hints: [
+      {
+        level: 1,
+        title: "クラス設計のヒント",
+        content: "図書館システムに必要なクラスを考えてみましょう。Book（図書）、Member（利用者）、Library（図書館）の3つのクラスが基本となります。",
+        codeExample: `public class Book {
+    private String isbn;
+    private String title;
+    private String author;
+    private boolean isAvailable;
+    
+    // コンストラクタとgetter/setterメソッド
+}`
+      },
+      {
+        level: 2,
+        title: "データ管理のヒント",
+        content: "ArrayListを使って図書と利用者の情報を管理しましょう。検索や更新が簡単になります。",
+        codeExample: `private ArrayList<Book> books = new ArrayList<>();
+private ArrayList<Member> members = new ArrayList<>();`
+      },
+      {
+        level: 3,
+        title: "貸出処理のヒント",
+        content: "貸出処理では、図書の在庫確認、利用者の貸出上限チェック、貸出記録の更新が必要です。",
+        codeExample: `public boolean lendBook(String isbn, String memberId) {
+    Book book = findBookByIsbn(isbn);
+    Member member = findMemberById(memberId);
+    
+    if (book != null && book.isAvailable() && member.canBorrow()) {
+        // 貸出処理
+        return true;
+    }
+    return false;
+}`
+      }
+    ],
+    phases: [
+      {
+        id: 1,
+        title: "基本クラスの設計",
+        description: "Book、Member、Libraryクラスの基本構造を作成します",
+        objectives: [
+          "Bookクラスの作成（ISBN、タイトル、著者、貸出状況）",
+          "Memberクラスの作成（会員ID、名前、貸出中図書リスト）", 
+          "Libraryクラスの作成（図書・会員管理用のArrayList）"
+        ],
+        completed: false
+      },
+      {
+        id: 2,
+        title: "データ登録機能",
+        description: "図書と会員の登録機能を実装します",
+        objectives: [
+          "図書登録機能の実装",
+          "会員登録機能の実装",
+          "重複チェック機能の追加"
+        ],
+        completed: false
+      },
+      {
+        id: 3,
+        title: "検索・表示機能",
+        description: "図書と会員の検索・一覧表示機能を実装します",
+        objectives: [
+          "ISBN による図書検索",
+          "タイトルによる図書検索",
+          "会員ID による会員検索",
+          "全図書・全会員の一覧表示"
+        ],
+        completed: false
+      },
+      {
+        id: 4,
+        title: "貸出・返却機能",
+        description: "図書の貸出と返却の処理を実装します",
+        objectives: [
+          "貸出処理の実装（在庫確認、上限チェック）",
+          "返却処理の実装",
+          "貸出記録の管理"
+        ],
+        completed: false
+      },
+      {
+        id: 5,
+        title: "統計情報とメニュー",
+        description: "統計情報表示とメインメニューを実装して完成させます",
+        objectives: [
+          "貸出中図書数の表示",
+          "利用者別貸出状況の表示",
+          "メインメニューの実装",
+          "例外処理の追加"
+        ],
+        completed: false
+      }
+    ],
+    starterCode: `import java.util.*;
+
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+        
+        // サンプルデータの初期化
+        library.initializeSampleData();
+        
+        System.out.println("=== 図書館管理システム ===");
+        // メニュー処理をここに実装
+        
+        scanner.close();
+    }
+}
+
+class Book {
+    // Book クラスの実装をここに追加
+}
+
+class Member {
+    // Member クラスの実装をここに追加  
+}
+
+class Library {
+    // Library クラスの実装をここに追加
+}`,
+    solutionCode: `import java.util.*;
+
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+        
+        // サンプルデータの初期化
+        library.initializeSampleData();
+        
+        System.out.println("=== 図書館管理システム ===");
+        
+        while (true) {
+            System.out.println("\\n1. 図書登録  2. 会員登録  3. 図書検索  4. 貸出  5. 返却  6. 統計  0. 終了");
+            System.out.print("選択してください: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // 改行文字の消費
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("ISBN: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("タイトル: ");
+                    String title = scanner.nextLine();
+                    System.out.print("著者: ");
+                    String author = scanner.nextLine();
+                    library.addBook(new Book(isbn, title, author));
+                    break;
+                case 2:
+                    System.out.print("会員ID: ");
+                    String memberId = scanner.nextLine();
+                    System.out.print("名前: ");
+                    String name = scanner.nextLine();
+                    library.addMember(new Member(memberId, name));
+                    break;
+                case 3:
+                    System.out.print("検索するタイトル: ");
+                    String searchTitle = scanner.nextLine();
+                    library.searchBooks(searchTitle);
+                    break;
+                case 4:
+                    System.out.print("貸出ISBN: ");
+                    String lendIsbn = scanner.nextLine();
+                    System.out.print("会員ID: ");
+                    String lendMemberId = scanner.nextLine();
+                    library.lendBook(lendIsbn, lendMemberId);
+                    break;
+                case 5:
+                    System.out.print("返却ISBN: ");
+                    String returnIsbn = scanner.nextLine();
+                    System.out.print("会員ID: ");
+                    String returnMemberId = scanner.nextLine();
+                    library.returnBook(returnIsbn, returnMemberId);
+                    break;
+                case 6:
+                    library.showStatistics();
+                    break;
+                case 0:
+                    System.out.println("システムを終了します");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("無効な選択です");
+            }
+        }
+    }
+}
+
+class Book {
+    private String isbn;
+    private String title;
+    private String author;
+    private boolean isAvailable;
+    private String borrowerId;
+    
+    public Book(String isbn, String title, String author) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.isAvailable = true;
+        this.borrowerId = null;
+    }
+    
+    // Getter メソッド
+    public String getIsbn() { return isbn; }
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public boolean isAvailable() { return isAvailable; }
+    public String getBorrowerId() { return borrowerId; }
+    
+    // 貸出・返却処理
+    public void lend(String memberId) {
+        this.isAvailable = false;
+        this.borrowerId = memberId;
+    }
+    
+    public void returnBook() {
+        this.isAvailable = true;
+        this.borrowerId = null;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("ISBN: %s, タイトル: %s, 著者: %s, 状態: %s", 
+                           isbn, title, author, isAvailable ? "貸出可能" : "貸出中");
+    }
+}
+
+class Member {
+    private String memberId;
+    private String name;
+    private ArrayList<String> borrowedBooks;
+    private final int MAX_BORROW = 3;
+    
+    public Member(String memberId, String name) {
+        this.memberId = memberId;
+        this.name = name;
+        this.borrowedBooks = new ArrayList<>();
+    }
+    
+    // Getter メソッド
+    public String getMemberId() { return memberId; }
+    public String getName() { return name; }
+    public ArrayList<String> getBorrowedBooks() { return borrowedBooks; }
+    
+    public boolean canBorrow() {
+        return borrowedBooks.size() < MAX_BORROW;
+    }
+    
+    public void borrowBook(String isbn) {
+        if (canBorrow()) {
+            borrowedBooks.add(isbn);
+        }
+    }
+    
+    public void returnBook(String isbn) {
+        borrowedBooks.remove(isbn);
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("ID: %s, 名前: %s, 貸出中: %d冊", 
+                           memberId, name, borrowedBooks.size());
+    }
+}
+
+class Library {
+    private ArrayList<Book> books;
+    private ArrayList<Member> members;
+    
+    public Library() {
+        this.books = new ArrayList<>();
+        this.members = new ArrayList<>();
+    }
+    
+    public void addBook(Book book) {
+        // 重複チェック
+        for (Book existingBook : books) {
+            if (existingBook.getIsbn().equals(book.getIsbn())) {
+                System.out.println("既に登録済みのISBNです");
+                return;
+            }
+        }
+        books.add(book);
+        System.out.println("図書を登録しました: " + book.getTitle());
+    }
+    
+    public void addMember(Member member) {
+        // 重複チェック
+        for (Member existingMember : members) {
+            if (existingMember.getMemberId().equals(member.getMemberId())) {
+                System.out.println("既に登録済みの会員IDです");
+                return;
+            }
+        }
+        members.add(member);
+        System.out.println("会員を登録しました: " + member.getName());
+    }
+    
+    public void searchBooks(String searchTitle) {
+        System.out.println("\\n=== 検索結果 ===");
+        boolean found = false;
+        for (Book book : books) {
+            if (book.getTitle().toLowerCase().contains(searchTitle.toLowerCase())) {
+                System.out.println(book);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("該当する図書が見つかりませんでした");
+        }
+    }
+    
+    public void lendBook(String isbn, String memberId) {
+        Book book = findBookByIsbn(isbn);
+        Member member = findMemberById(memberId);
+        
+        if (book == null) {
+            System.out.println("図書が見つかりません");
+            return;
+        }
+        
+        if (member == null) {
+            System.out.println("会員が見つかりません");
+            return;
+        }
+        
+        if (!book.isAvailable()) {
+            System.out.println("この図書は既に貸出中です");
+            return;
+        }
+        
+        if (!member.canBorrow()) {
+            System.out.println("貸出上限に達しています（上限: 3冊）");
+            return;
+        }
+        
+        book.lend(memberId);
+        member.borrowBook(isbn);
+        System.out.println("貸出処理が完了しました: " + book.getTitle());
+    }
+    
+    public void returnBook(String isbn, String memberId) {
+        Book book = findBookByIsbn(isbn);
+        Member member = findMemberById(memberId);
+        
+        if (book == null || member == null) {
+            System.out.println("図書または会員が見つかりません");
+            return;
+        }
+        
+        if (book.isAvailable()) {
+            System.out.println("この図書は貸出されていません");
+            return;
+        }
+        
+        if (!book.getBorrowerId().equals(memberId)) {
+            System.out.println("この図書は別の会員が借りています");
+            return;
+        }
+        
+        book.returnBook();
+        member.returnBook(isbn);
+        System.out.println("返却処理が完了しました: " + book.getTitle());
+    }
+    
+    private Book findBookByIsbn(String isbn) {
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
+    }
+    
+    private Member findMemberById(String memberId) {
+        for (Member member : members) {
+            if (member.getMemberId().equals(memberId)) {
+                return member;
+            }
+        }
+        return null;
+    }
+    
+    public void showStatistics() {
+        System.out.println("\\n=== 統計情報 ===");
+        System.out.println("総図書数: " + books.size());
+        System.out.println("総会員数: " + members.size());
+        
+        int availableBooks = 0;
+        int borrowedBooks = 0;
+        
+        for (Book book : books) {
+            if (book.isAvailable()) {
+                availableBooks++;
+            } else {
+                borrowedBooks++;
+            }
+        }
+        
+        System.out.println("貸出可能図書数: " + availableBooks);
+        System.out.println("貸出中図書数: " + borrowedBooks);
+        
+        System.out.println("\\n=== 会員別貸出状況 ===");
+        for (Member member : members) {
+            if (member.getBorrowedBooks().size() > 0) {
+                System.out.println(member);
+            }
+        }
+    }
+    
+    public void initializeSampleData() {
+        // サンプル図書データ
+        addBook(new Book("978-4-7741-8411-1", "Java入門", "田中太郎"));
+        addBook(new Book("978-4-7981-5757-3", "プログラミング基礎", "佐藤花子"));
+        addBook(new Book("978-4-8156-0123-4", "データ構造とアルゴリズム", "鈴木一郎"));
+        addBook(new Book("978-4-7741-9876-5", "Webアプリケーション開発", "山田次郎"));
+        addBook(new Book("978-4-7981-6543-2", "データベース設計", "田村美咲"));
+        
+        // サンプル会員データ
+        addMember(new Member("M001", "高橋学"));
+        addMember(new Member("M002", "中村優子"));
+        addMember(new Member("M003", "小林健太"));
+        
+        System.out.println("サンプルデータの初期化が完了しました");
+    }
+}`,
+    testCases: [
+      {
+        input: "図書登録: ISBN=978-4-1234-5678-9, タイトル=テスト図書, 著者=テスト著者",
+        expectedOutput: "図書を登録しました: テスト図書",
+        description: "図書登録機能のテスト"
+      },
+      {
+        input: "会員登録: ID=M999, 名前=テスト利用者",
+        expectedOutput: "会員を登録しました: テスト利用者", 
+        description: "会員登録機能のテスト"
+      },
+      {
+        input: "貸出処理: ISBN=978-4-7741-8411-1, 会員ID=M001",
+        expectedOutput: "貸出処理が完了しました: Java入門",
+        description: "貸出機能のテスト"
+      }
+    ],
+    codeBlocks: [
+      // Phase 1: 基本クラス設計
+      {
+        id: "book-class",
+        type: "class",
+        category: "クラス定義",
+        label: "Bookクラスの基本構造",
+        code: "class Book {\n    private String isbn;\n    private String title;\n    private String author;\n    private boolean isAvailable;",
+        description: "図書情報を管理するBookクラス",
+        phase: 1
+      },
+      {
+        id: "book-constructor",
+        type: "method", 
+        category: "コンストラクタ",
+        label: "Bookコンストラクタ",
+        code: "    public Book(String isbn, String title, String author) {\n        this.isbn = isbn;\n        this.title = title;\n        this.author = author;\n        this.isAvailable = true;\n    }",
+        description: "Bookオブジェクトを初期化するコンストラクタ",
+        phase: 1
+      },
+      {
+        id: "book-getters",
+        type: "method",
+        category: "Getterメソッド", 
+        label: "Book Getterメソッド",
+        code: "    public String getIsbn() { return isbn; }\n    public String getTitle() { return title; }\n    public String getAuthor() { return author; }\n    public boolean isAvailable() { return isAvailable; }",
+        description: "Bookクラスのフィールドにアクセスするメソッド",
+        phase: 1
+      },
+      {
+        id: "member-class",
+        type: "class",
+        category: "クラス定義",
+        label: "Memberクラスの基本構造", 
+        code: "class Member {\n    private String memberId;\n    private String name;\n    private ArrayList<String> borrowedBooks;\n    private final int MAX_BORROW = 3;",
+        description: "図書館利用者を管理するMemberクラス",
+        phase: 1
+      },
+      {
+        id: "member-constructor",
+        type: "method",
+        category: "コンストラクタ",
+        label: "Memberコンストラクタ",
+        code: "    public Member(String memberId, String name) {\n        this.memberId = memberId;\n        this.name = name;\n        this.borrowedBooks = new ArrayList<>();\n    }",
+        description: "Memberオブジェクトを初期化するコンストラクタ", 
+        phase: 1
+      },
+      {
+        id: "library-class",
+        type: "class",
+        category: "クラス定義",
+        label: "Libraryクラスの基本構造",
+        code: "class Library {\n    private ArrayList<Book> books;\n    private ArrayList<Member> members;",
+        description: "図書館システム全体を管理するLibraryクラス",
+        phase: 1
+      },
+      {
+        id: "library-constructor",
+        type: "method",
+        category: "コンストラクタ", 
+        label: "Libraryコンストラクタ",
+        code: "    public Library() {\n        this.books = new ArrayList<>();\n        this.members = new ArrayList<>();\n    }",
+        description: "LibraryオブジェクトのArrayListを初期化",
+        phase: 1
+      },
+      
+      // Phase 2: データ登録機能
+      {
+        id: "add-book-method",
+        type: "method",
+        category: "登録機能",
+        label: "図書登録メソッド",
+        code: "    public void addBook(Book book) {\n        for (Book existingBook : books) {\n            if (existingBook.getIsbn().equals(book.getIsbn())) {\n                System.out.println(\"既に登録済みのISBNです\");\n                return;\n            }\n        }",
+        description: "重複チェック付きの図書登録メソッド", 
+        phase: 2
+      },
+      {
+        id: "add-book-success",
+        type: "statement",
+        category: "処理完了",
+        label: "図書登録成功処理", 
+        code: "        books.add(book);\n        System.out.println(\"図書を登録しました: \" + book.getTitle());",
+        description: "図書をリストに追加して成功メッセージを表示",
+        phase: 2
+      },
+      {
+        id: "add-member-method",
+        type: "method",
+        category: "登録機能",
+        label: "会員登録メソッド",
+        code: "    public void addMember(Member member) {\n        for (Member existingMember : members) {\n            if (existingMember.getMemberId().equals(member.getMemberId())) {\n                System.out.println(\"既に登録済みの会員IDです\");\n                return;\n            }\n        }",
+        description: "重複チェック付きの会員登録メソッド",
+        phase: 2
+      },
+      {
+        id: "add-member-success", 
+        type: "statement",
+        category: "処理完了",
+        label: "会員登録成功処理",
+        code: "        members.add(member);\n        System.out.println(\"会員を登録しました: \" + member.getName());",
+        description: "会員をリストに追加して成功メッセージを表示",
+        phase: 2
+      },
+      {
+        id: "method-closing",
+        type: "statement", 
+        category: "メソッド終了",
+        label: "メソッド終了",
+        code: "    }",
+        description: "メソッドの終了括弧",
+        phase: 2
+      },
+      
+      // Phase 3: 検索・表示機能  
+      {
+        id: "search-books-method",
+        type: "method",
+        category: "検索機能", 
+        label: "図書検索メソッド",
+        code: "    public void searchBooks(String searchTitle) {\n        System.out.println(\"\\n=== 検索結果 ===\");\n        boolean found = false;",
+        description: "タイトルによる図書検索メソッド",
+        phase: 3
+      },
+      {
+        id: "search-loop",
+        type: "loop",
+        category: "検索処理", 
+        label: "検索ループ処理",
+        code: "        for (Book book : books) {\n            if (book.getTitle().toLowerCase().contains(searchTitle.toLowerCase())) {\n                System.out.println(book);\n                found = true;\n            }\n        }",
+        description: "図書リストから該当する図書を検索",
+        phase: 3
+      },
+      {
+        id: "search-not-found",
+        type: "condition",
+        category: "結果判定",
+        label: "検索結果なし処理",
+        code: "        if (!found) {\n            System.out.println(\"該当する図書が見つかりませんでした\");\n        }",
+        description: "検索結果が見つからない場合の処理", 
+        phase: 3
+      },
+      {
+        id: "find-book-method", 
+        type: "method",
+        category: "検索補助",
+        label: "ISBN検索メソッド",
+        code: "    private Book findBookByIsbn(String isbn) {\n        for (Book book : books) {\n            if (book.getIsbn().equals(isbn)) {\n                return book;\n            }\n        }\n        return null;\n    }",
+        description: "ISBNによる図書検索の補助メソッド",
+        phase: 3
+      },
+      {
+        id: "find-member-method",
+        type: "method", 
+        category: "検索補助",
+        label: "会員ID検索メソッド",
+        code: "    private Member findMemberById(String memberId) {\n        for (Member member : members) {\n            if (member.getMemberId().equals(memberId)) {\n                return member;\n            }\n        }\n        return null;\n    }",
+        description: "会員IDによる会員検索の補助メソッド",
+        phase: 3
+      },
+      
+      // Phase 4: 貸出・返却機能
+      {
+        id: "lend-book-method",
+        type: "method",
+        category: "貸出機能",
+        label: "図書貸出メソッド",
+        code: "    public void lendBook(String isbn, String memberId) {\n        Book book = findBookByIsbn(isbn);\n        Member member = findMemberById(memberId);",
+        description: "図書貸出処理のメインメソッド",
+        phase: 4
+      },
+      {
+        id: "lend-validation",
+        type: "condition", 
+        category: "入力検証",
+        label: "貸出前チェック",
+        code: "        if (book == null) {\n            System.out.println(\"図書が見つかりません\");\n            return;\n        }\n        if (member == null) {\n            System.out.println(\"会員が見つかりません\");\n            return;\n        }",
+        description: "図書と会員の存在確認", 
+        phase: 4
+      },
+      {
+        id: "availability-check",
+        type: "condition",
+        category: "在庫確認",
+        label: "貸出可能性チェック",
+        code: "        if (!book.isAvailable()) {\n            System.out.println(\"この図書は既に貸出中です\");\n            return;\n        }\n        if (!member.canBorrow()) {\n            System.out.println(\"貸出上限に達しています（上限: 3冊）\");\n            return;\n        }",
+        description: "図書の在庫確認と会員の貸出上限チェック",
+        phase: 4
+      },
+      {
+        id: "lend-process",
+        type: "statement", 
+        category: "貸出処理",
+        label: "貸出実行処理", 
+        code: "        book.lend(memberId);\n        member.borrowBook(isbn);\n        System.out.println(\"貸出処理が完了しました: \" + book.getTitle());",
+        description: "実際の貸出処理とメッセージ表示",
+        phase: 4
+      },
+      {
+        id: "book-lend-method",
+        type: "method",
+        category: "Book補助機能", 
+        label: "Book貸出メソッド",
+        code: "    public void lend(String memberId) {\n        this.isAvailable = false;\n        this.borrowerId = memberId;\n    }",
+        description: "Bookクラスの貸出状態更新メソッド",
+        phase: 4
+      },
+      {
+        id: "member-can-borrow",
+        type: "method",
+        category: "Member補助機能",
+        label: "貸出可能判定メソッド",
+        code: "    public boolean canBorrow() {\n        return borrowedBooks.size() < MAX_BORROW;\n    }",
+        description: "会員の貸出可能判定メソッド",
+        phase: 4 
+      },
+      
+      // Phase 5: 統計情報とメニュー
+      {
+        id: "show-statistics-method",
+        type: "method", 
+        category: "統計機能",
+        label: "統計情報表示メソッド", 
+        code: "    public void showStatistics() {\n        System.out.println(\"\\n=== 統計情報 ===\");\n        System.out.println(\"総図書数: \" + books.size());\n        System.out.println(\"総会員数: \" + members.size());",
+        description: "基本統計情報の表示メソッド",
+        phase: 5
+      },
+      {
+        id: "book-count-stats", 
+        type: "statement",
+        category: "統計計算",
+        label: "図書状況集計",
+        code: "        int availableBooks = 0;\n        int borrowedBooks = 0;\n        for (Book book : books) {\n            if (book.isAvailable()) {\n                availableBooks++;\n            } else {\n                borrowedBooks++;\n            }\n        }",
+        description: "貸出可能・貸出中図書数の集計",
+        phase: 5
+      },
+      {
+        id: "stats-display",
+        type: "statement",
+        category: "統計表示",
+        label: "統計結果表示", 
+        code: "        System.out.println(\"貸出可能図書数: \" + availableBooks);\n        System.out.println(\"貸出中図書数: \" + borrowedBooks);",
+        description: "集計結果の表示",
+        phase: 5
+      },
+      {
+        id: "main-menu", 
+        type: "loop",
+        category: "メニュー制御",
+        label: "メインメニューループ",
+        code: "        while (true) {\n            System.out.println(\"\\n1. 図書登録  2. 会員登録  3. 図書検索  4. 貸出  5. 返却  6. 統計  0. 終了\");\n            System.out.print(\"選択してください: \");\n            int choice = scanner.nextInt();\n            scanner.nextLine();",
+        description: "メインメニューの表示と選択受付",
+        phase: 5
+      },
+      {
+        id: "menu-switch",
+        type: "condition", 
+        category: "メニュー処理",
+        label: "メニュー分岐処理",
+        code: "            switch (choice) {\n                case 1:\n                    // 図書登録処理\n                    break;\n                case 0:\n                    System.out.println(\"システムを終了します\");\n                    return;",
+        description: "選択された機能への分岐処理", 
+        phase: 5
+      }
+    ],
+    codeSlots: [
+      // Phase 1 slots
+      { id: "slot-1-1", phase: 1, expectedBlockId: "book-class", hint: "図書情報を管理するBookクラスを定義" },
+      { id: "slot-1-2", phase: 1, expectedBlockId: "book-constructor", hint: "Bookオブジェクトを初期化するコンストラクタ" },
+      { id: "slot-1-3", phase: 1, expectedBlockId: "book-getters", hint: "Bookクラスのフィールドにアクセスするgetterメソッド" },
+      { id: "slot-1-4", phase: 1, expectedBlockId: "method-closing", hint: "Bookクラスの終了" },
+      { id: "slot-1-5", phase: 1, expectedBlockId: "member-class", hint: "利用者を管理するMemberクラスを定義" },
+      { id: "slot-1-6", phase: 1, expectedBlockId: "member-constructor", hint: "Memberオブジェクトを初期化するコンストラクタ" },
+      { id: "slot-1-7", phase: 1, expectedBlockId: "method-closing", hint: "Memberクラスの終了" },
+      { id: "slot-1-8", phase: 1, expectedBlockId: "library-class", hint: "図書館システム全体を管理するLibraryクラス" },
+      { id: "slot-1-9", phase: 1, expectedBlockId: "library-constructor", hint: "LibraryオブジェクトのArrayListを初期化" },
+      
+      // Phase 2 slots  
+      { id: "slot-2-1", phase: 2, expectedBlockId: "add-book-method", hint: "重複チェック付きの図書登録メソッド" },
+      { id: "slot-2-2", phase: 2, expectedBlockId: "add-book-success", hint: "図書をリストに追加して成功メッセージ" },
+      { id: "slot-2-3", phase: 2, expectedBlockId: "method-closing", hint: "addBookメソッドの終了" },
+      { id: "slot-2-4", phase: 2, expectedBlockId: "add-member-method", hint: "重複チェック付きの会員登録メソッド" },
+      { id: "slot-2-5", phase: 2, expectedBlockId: "add-member-success", hint: "会員をリストに追加して成功メッセージ" },
+      { id: "slot-2-6", phase: 2, expectedBlockId: "method-closing", hint: "addMemberメソッドの終了" },
+      
+      // Phase 3 slots
+      { id: "slot-3-1", phase: 3, expectedBlockId: "search-books-method", hint: "タイトルによる図書検索メソッドの開始" },
+      { id: "slot-3-2", phase: 3, expectedBlockId: "search-loop", hint: "図書リストから該当する図書を検索するループ" },
+      { id: "slot-3-3", phase: 3, expectedBlockId: "search-not-found", hint: "検索結果が見つからない場合の処理" },
+      { id: "slot-3-4", phase: 3, expectedBlockId: "method-closing", hint: "searchBooksメソッドの終了" },
+      { id: "slot-3-5", phase: 3, expectedBlockId: "find-book-method", hint: "ISBNによる図書検索の補助メソッド" },
+      { id: "slot-3-6", phase: 3, expectedBlockId: "find-member-method", hint: "会員IDによる会員検索の補助メソッド" },
+      
+      // Phase 4 slots
+      { id: "slot-4-1", phase: 4, expectedBlockId: "lend-book-method", hint: "図書貸出処理のメインメソッドの開始" },
+      { id: "slot-4-2", phase: 4, expectedBlockId: "lend-validation", hint: "図書と会員の存在確認" },
+      { id: "slot-4-3", phase: 4, expectedBlockId: "availability-check", hint: "図書の在庫確認と会員の貸出上限チェック" },
+      { id: "slot-4-4", phase: 4, expectedBlockId: "lend-process", hint: "実際の貸出処理とメッセージ表示" },
+      { id: "slot-4-5", phase: 4, expectedBlockId: "method-closing", hint: "lendBookメソッドの終了" },
+      { id: "slot-4-6", phase: 4, expectedBlockId: "book-lend-method", hint: "Bookクラスの貸出状態更新メソッド" },
+      { id: "slot-4-7", phase: 4, expectedBlockId: "member-can-borrow", hint: "会員の貸出可能判定メソッド" },
+      
+      // Phase 5 slots
+      { id: "slot-5-1", phase: 5, expectedBlockId: "show-statistics-method", hint: "基本統計情報の表示メソッドの開始" },
+      { id: "slot-5-2", phase: 5, expectedBlockId: "book-count-stats", hint: "貸出可能・貸出中図書数の集計" },
+      { id: "slot-5-3", phase: 5, expectedBlockId: "stats-display", hint: "集計結果の表示" },
+      { id: "slot-5-4", phase: 5, expectedBlockId: "method-closing", hint: "showStatisticsメソッドの終了" },
+      { id: "slot-5-5", phase: 5, expectedBlockId: "main-menu", hint: "メインメニューの表示と選択受付のループ" },
+      { id: "slot-5-6", phase: 5, expectedBlockId: "menu-switch", hint: "選択された機能への分岐処理" }
+    ],
+    puzzleMode: true
   }
 ]

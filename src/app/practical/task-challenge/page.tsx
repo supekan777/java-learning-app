@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, Briefcase, Clock, Star } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
-import { practicalChallenges } from '@/data/practicalChallenges'
+import { practicalChallenges } from '@/data/practicalChallengesOptimized'
 
 export default function TaskChallengePage() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('beginner')
